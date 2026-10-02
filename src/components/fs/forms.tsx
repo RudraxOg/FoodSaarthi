@@ -125,7 +125,7 @@ export function FormSummaryPanel({ title, rows, children }: { title: string; row
 
 /* ---------- Field primitives ---------- */
 
-export function Field({ label, error, hint, children, htmlFor }: { label: string; error?: string; hint?: string; children: ReactNode; htmlFor?: string }) {
+export function Field({ label, error, hint, children, htmlFor }: { label: string; error?: string | undefined; hint?: string | undefined; children: ReactNode; htmlFor?: string | undefined }) {
   return (
     <div>
       <label htmlFor={htmlFor} className="mb-1.5 block text-sm font-semibold">{label}</label>
@@ -178,7 +178,7 @@ export function RadioCards({ options, value, onChange }: { options: { v: string;
   );
 }
 
-export function CheckRow({ checked, onChange, children, error }: { checked: boolean; onChange: (v: boolean) => void; children: ReactNode; error?: boolean }) {
+export function CheckRow({ checked, onChange, children, error }: { checked: boolean; onChange: (v: boolean) => void; children: ReactNode; error?: boolean | undefined }) {
   return (
     <label className={cn("flex min-h-11 cursor-pointer items-start gap-3 rounded-xl border p-3 text-sm", checked ? "border-primary bg-accent/60" : error ? "border-destructive" : "bg-background")}>
       <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="mt-0.5 size-4 accent-[var(--primary)]" />
