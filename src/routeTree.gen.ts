@@ -10,7 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as PartnerWithUsRouteImport } from './routes/partner-with-us'
+import { Route as SafetyRouteImport } from './routes/safety'
+import { Route as SupportRouteImport } from './routes/support'
 import { Route as ListingIdRouteImport } from './routes/listing.$id'
 import { Route as OrdersIndexRouteImport } from './routes/orders.index'
 import { Route as OrdersIdRouteImport } from './routes/orders.$id'
@@ -20,9 +25,34 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExploreRoute = ExploreRouteImport.update({
   id: '/explore',
   path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnerWithUsRoute = PartnerWithUsRouteImport.update({
+  id: '/partner-with-us',
+  path: '/partner-with-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SafetyRoute = SafetyRouteImport.update({
+  id: '/safety',
+  path: '/safety',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ListingIdRoute = ListingIdRouteImport.update({
@@ -43,14 +73,24 @@ const OrdersIdRoute = OrdersIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/explore': typeof ExploreRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/partner-with-us': typeof PartnerWithUsRoute
+  '/safety': typeof SafetyRoute
+  '/support': typeof SupportRoute
   '/listing/$id': typeof ListingIdRoute
   '/orders/$id': typeof OrdersIdRoute
   '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/explore': typeof ExploreRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/partner-with-us': typeof PartnerWithUsRoute
+  '/safety': typeof SafetyRoute
+  '/support': typeof SupportRoute
   '/listing/$id': typeof ListingIdRoute
   '/orders/$id': typeof OrdersIdRoute
   '/orders': typeof OrdersIndexRoute
@@ -58,23 +98,63 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/demo': typeof DemoRoute
   '/explore': typeof ExploreRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/partner-with-us': typeof PartnerWithUsRoute
+  '/safety': typeof SafetyRoute
+  '/support': typeof SupportRoute
   '/listing/$id': typeof ListingIdRoute
   '/orders/$id': typeof OrdersIdRoute
   '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/explore' | '/listing/$id' | '/orders/$id' | '/orders/'
+  fullPaths:
+    | '/'
+    | '/demo'
+    | '/explore'
+    | '/how-it-works'
+    | '/partner-with-us'
+    | '/safety'
+    | '/support'
+    | '/listing/$id'
+    | '/orders/$id'
+    | '/orders/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/explore' | '/listing/$id' | '/orders/$id' | '/orders'
+  to:
+    | '/'
+    | '/demo'
+    | '/explore'
+    | '/how-it-works'
+    | '/partner-with-us'
+    | '/safety'
+    | '/support'
+    | '/listing/$id'
+    | '/orders/$id'
+    | '/orders'
   id:
-    '__root__' | '/' | '/explore' | '/listing/$id' | '/orders/$id' | '/orders/'
+    | '__root__'
+    | '/'
+    | '/demo'
+    | '/explore'
+    | '/how-it-works'
+    | '/partner-with-us'
+    | '/safety'
+    | '/support'
+    | '/listing/$id'
+    | '/orders/$id'
+    | '/orders/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DemoRoute: typeof DemoRoute
   ExploreRoute: typeof ExploreRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  PartnerWithUsRoute: typeof PartnerWithUsRoute
+  SafetyRoute: typeof SafetyRoute
+  SupportRoute: typeof SupportRoute
   ListingIdRoute: typeof ListingIdRoute
   OrdersIdRoute: typeof OrdersIdRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
@@ -89,11 +169,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/explore': {
       id: '/explore'
       path: '/explore'
       fullPath: '/explore'
       preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partner-with-us': {
+      id: '/partner-with-us'
+      path: '/partner-with-us'
+      fullPath: '/partner-with-us'
+      preLoaderRoute: typeof PartnerWithUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/safety': {
+      id: '/safety'
+      path: '/safety'
+      fullPath: '/safety'
+      preLoaderRoute: typeof SafetyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/listing/$id': {
@@ -122,7 +237,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DemoRoute: DemoRoute,
   ExploreRoute: ExploreRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  PartnerWithUsRoute: PartnerWithUsRoute,
+  SafetyRoute: SafetyRoute,
+  SupportRoute: SupportRoute,
   ListingIdRoute: ListingIdRoute,
   OrdersIdRoute: OrdersIdRoute,
   OrdersIndexRoute: OrdersIndexRoute,
