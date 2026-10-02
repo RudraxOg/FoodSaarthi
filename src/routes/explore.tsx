@@ -47,7 +47,7 @@ function Explore() {
       <p className="mt-2 text-muted-foreground">Sealed, unserved surplus — sorted by what closes first.</p>
       <div className="mt-5"><DemoDataNotice /></div>
 
-      <div className="mt-6 flex flex-wrap items-center gap-2" role="group" aria-label="Filters">
+      <div className="mt-6 flex flex-wrap items-center gap-2" role="group" aria-label="Filters" data-tour="filters">
         {(["all", "veg", "nonveg"] as Diet[]).map((d) => (
           <button key={d} className={chip(diet === d)} onClick={() => setDiet(d)} aria-pressed={diet === d}>
             {d === "all" ? "All" : d === "veg" ? "Veg" : "Non-veg"}
