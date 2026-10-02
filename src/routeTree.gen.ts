@@ -10,12 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as PartnerWithUsRouteImport } from './routes/partner-with-us'
 import { Route as SafetyRouteImport } from './routes/safety'
 import { Route as SupportRouteImport } from './routes/support'
+import { Route as DemoIndexRouteImport } from './routes/demo.index'
 import { Route as ListingIdRouteImport } from './routes/listing.$id'
 import { Route as OrdersIndexRouteImport } from './routes/orders.index'
 import { Route as OrdersIdRouteImport } from './routes/orders.$id'
@@ -23,11 +23,6 @@ import { Route as OrdersIdRouteImport } from './routes/orders.$id'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DemoRoute = DemoRouteImport.update({
-  id: '/demo',
-  path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExploreRoute = ExploreRouteImport.update({
@@ -55,6 +50,11 @@ const SupportRoute = SupportRouteImport.update({
   path: '/support',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DemoIndexRoute = DemoIndexRouteImport.update({
+  id: '/demo/',
+  path: '/demo/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ListingIdRoute = ListingIdRouteImport.update({
   id: '/listing/$id',
   path: '/listing/$id',
@@ -73,7 +73,6 @@ const OrdersIdRoute = OrdersIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
   '/explore': typeof ExploreRoute
   '/how-it-works': typeof HowItWorksRoute
   '/partner-with-us': typeof PartnerWithUsRoute
@@ -81,11 +80,11 @@ export interface FileRoutesByFullPath {
   '/support': typeof SupportRoute
   '/listing/$id': typeof ListingIdRoute
   '/orders/$id': typeof OrdersIdRoute
+  '/demo/': typeof DemoIndexRoute
   '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
   '/explore': typeof ExploreRoute
   '/how-it-works': typeof HowItWorksRoute
   '/partner-with-us': typeof PartnerWithUsRoute
@@ -93,12 +92,12 @@ export interface FileRoutesByTo {
   '/support': typeof SupportRoute
   '/listing/$id': typeof ListingIdRoute
   '/orders/$id': typeof OrdersIdRoute
+  '/demo': typeof DemoIndexRoute
   '/orders': typeof OrdersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/demo': typeof DemoRoute
   '/explore': typeof ExploreRoute
   '/how-it-works': typeof HowItWorksRoute
   '/partner-with-us': typeof PartnerWithUsRoute
@@ -106,13 +105,13 @@ export interface FileRoutesById {
   '/support': typeof SupportRoute
   '/listing/$id': typeof ListingIdRoute
   '/orders/$id': typeof OrdersIdRoute
+  '/demo/': typeof DemoIndexRoute
   '/orders/': typeof OrdersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/demo'
     | '/explore'
     | '/how-it-works'
     | '/partner-with-us'
@@ -120,11 +119,11 @@ export interface FileRouteTypes {
     | '/support'
     | '/listing/$id'
     | '/orders/$id'
+    | '/demo/'
     | '/orders/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/demo'
     | '/explore'
     | '/how-it-works'
     | '/partner-with-us'
@@ -132,11 +131,11 @@ export interface FileRouteTypes {
     | '/support'
     | '/listing/$id'
     | '/orders/$id'
+    | '/demo'
     | '/orders'
   id:
     | '__root__'
     | '/'
-    | '/demo'
     | '/explore'
     | '/how-it-works'
     | '/partner-with-us'
@@ -144,12 +143,12 @@ export interface FileRouteTypes {
     | '/support'
     | '/listing/$id'
     | '/orders/$id'
+    | '/demo/'
     | '/orders/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DemoRoute: typeof DemoRoute
   ExploreRoute: typeof ExploreRoute
   HowItWorksRoute: typeof HowItWorksRoute
   PartnerWithUsRoute: typeof PartnerWithUsRoute
@@ -157,6 +156,7 @@ export interface RootRouteChildren {
   SupportRoute: typeof SupportRoute
   ListingIdRoute: typeof ListingIdRoute
   OrdersIdRoute: typeof OrdersIdRoute
+  DemoIndexRoute: typeof DemoIndexRoute
   OrdersIndexRoute: typeof OrdersIndexRoute
 }
 
@@ -167,13 +167,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/demo': {
-      id: '/demo'
-      path: '/demo'
-      fullPath: '/demo'
-      preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/explore': {
@@ -211,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/demo/': {
+      id: '/demo/'
+      path: '/demo'
+      fullPath: '/demo/'
+      preLoaderRoute: typeof DemoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/listing/$id': {
       id: '/listing/$id'
       path: '/listing/$id'
@@ -237,7 +237,6 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DemoRoute: DemoRoute,
   ExploreRoute: ExploreRoute,
   HowItWorksRoute: HowItWorksRoute,
   PartnerWithUsRoute: PartnerWithUsRoute,
@@ -245,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   SupportRoute: SupportRoute,
   ListingIdRoute: ListingIdRoute,
   OrdersIdRoute: OrdersIdRoute,
+  DemoIndexRoute: DemoIndexRoute,
   OrdersIndexRoute: OrdersIndexRoute,
 }
 export const routeTree = rootRouteImport
