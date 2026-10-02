@@ -30,7 +30,7 @@ function PartnerHome() {
 
   // Simulated real-time reservations on the first listing.
   useEffect(() => {
-    const t = setInterval(() => setQty((q) => ({ ...q, l1: Math.max(1, (q.l1 ?? 1) - 1) })), 7000);
+    const t = setInterval(() => setQty((q) => ({ ...q, l1: Math.max(1, (q['l1'] ?? 1) - 1) })), 7000);
     return () => clearInterval(t);
   }, []);
 
