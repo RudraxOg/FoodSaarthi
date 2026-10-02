@@ -32,7 +32,7 @@ export function GuidedDemoProvider({ children }: { children: ReactNode }) {
     (r: TourRole, i: number) => {
       setStep(i);
       localStorage.setItem(KEY(r), String(i));
-      navigate({ to: tours[r][i].path as never });
+      navigate({ to: tours[r][i]!.path as never });
     },
     [navigate],
   );
@@ -73,7 +73,7 @@ export function GuidedDemoProvider({ children }: { children: ReactNode }) {
 }
 
 function TourOverlay({ steps, step, onNext, onPrev, onRestart, onClose }: { steps: TourStep[]; step: number; onNext: () => void; onPrev: () => void; onRestart: () => void; onClose: () => void }) {
-  const s = steps[step];
+  const s = steps[step]!;
   const pathname = useRouterState({ select: (r) => r.location.pathname });
   const [rect, setRect] = useState<DOMRect | null>(null);
 
